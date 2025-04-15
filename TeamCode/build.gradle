@@ -25,4 +25,9 @@ android {
 
 dependencies {
     implementation project(':FtcRobotController')
+
+    implementation 'org.ftclib.ftclib:core:2.1.1' // core
+
+    implementation 'com.github.Stealth-Robotics.StealthyLib:core:v1.0.0' // core lib
+    implementation 'com.github.Stealth-Robotics.StealthyLib:ftc:v1.0.0' // ftc lib
 }
