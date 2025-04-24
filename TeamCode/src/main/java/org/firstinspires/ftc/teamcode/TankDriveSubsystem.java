@@ -1,11 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.arcrobotics.ftclib.command.Command;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 
 import org.stealthrobotics.stealthylib.ftc.StealthSubsystem;
+
+import java.util.function.DoubleSupplier;
 
 public class TankDriveSubsystem extends StealthSubsystem {
     public final DcMotor left;
@@ -14,6 +17,10 @@ public class TankDriveSubsystem extends StealthSubsystem {
     public TankDriveSubsystem(HardwareMap hardwareMap) {
         left = hardwareMap.get(DcMotor.class, "leftDrive");
         right = hardwareMap.get(DcMotor.class, "rightDrive");
+    }
+
+    public Command driveDefaultCommand(DoubleSupplier leftY, DoubleSupplier rightX) {
+        return this.runOnce(() -> driveTeleop(leftY.getAsDouble(), rightX.getAsDouble()));
     }
 
     public void driveTeleop(double leftSickY, double rightStickX) {
